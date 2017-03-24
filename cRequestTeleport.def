@@ -1,0 +1,4 @@
+uint32 zone
+float x
+float y
+float z
