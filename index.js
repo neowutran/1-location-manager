@@ -3,7 +3,7 @@ const jsonfile = require('jsonfile');
 
 function locMan(dispatch){
     const slash = new Slash(dispatch);
-    let configFile = './bin/node_modules/1-location-manager/config.json';
+    let configFile = './node_modules/1-location-manager/config.json';
     let locations = {};
     let zone;
     let myLocation;
