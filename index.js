@@ -14,14 +14,14 @@ function locMan(dispatch){
     this.teleport = function(name){
         let _name = name.toLowerCase();
         if(locations[_name] === undefined) return slash.print(`[loc] location "${name}" does not exist`)
-        dispatch.toServer('cRequestTeleport', locations[_name]);
+        dispatch.toServer('C_REQUEST_TELEPORT',900, locations[_name]);
         slash.print(`[loc] teleporting to ${name}`)
     }
     function parseMapLink(str){
         let regex = /@([0-9]+?)@(.+?),(.+?),(.+?)"/g;
         let results = regex.exec(str);
         if(!results) return false;
-        dispatch.toServer('cRequestTeleport', {
+        dispatch.toServer('C_REQUEST_TELEPORT', 900, {
             zone: parseInt(results[1]),
             x: parseFloat(results[2]),
             y: parseFloat(results[3]),
@@ -55,10 +55,10 @@ function locMan(dispatch){
         })
     }
 
-    dispatch.hook('cPlayerLocation', (event) => {
+    dispatch.hook('C_PLAYER_LOCATION',1, event => {
         myLocation = event;
     });
-    dispatch.hook('sLoadTopo', (event) => {
+    dispatch.hook('S_LOAD_TOPO',1, event => {
         ({zone} = event);
     });
 
