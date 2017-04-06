@@ -65,7 +65,9 @@ module.exports = function LocationManager(dispatch){
         delete locations[name];
     }
     function save(){
-        jsonfile.writeFile(configFile, locations);
+        jsonfile.writeFile(configFile, locations, {spaces: 2}, (err) => {
+            if(err) console.log(err)
+        });
     }
     function load(){
         jsonfile.readFile(configFile, function(e, obj){
